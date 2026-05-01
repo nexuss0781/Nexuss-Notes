@@ -1,0 +1,417 @@
+/**
+ * Nexus Notes - Custom Styles
+ * Premium CSS with modern effects
+ */
+
+/* ============================================
+   CSS Variables & Custom Properties
+   ============================================ */
+:root {
+    --primary-50: #eef2ff;
+    --primary-100: #e0e7ff;
+    --primary-500: #6366f1;
+    --primary-600: #4f46e5;
+    --primary-700: #4338ca;
+    
+    --dark-bg: #0f172a;
+    --dark-surface: #1e293b;
+    --dark-border: #334155;
+    
+    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+    --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1);
+    
+    --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-base: 300ms cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-slow: 500ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ============================================
+   Base Styles & Reset
+   ============================================ */
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+}
+
+body {
+    font-feature-settings: "cv11", "ss01";
+    font-variation-settings: "opsz" 840;
+}
+
+/* ============================================
+   Scrollbar Styling
+   ============================================ */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #94a3b8;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+    background: #475569;
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+    background: #64748b;
+}
+
+/* ============================================
+   Selection Styling
+   ============================================ */
+::selection {
+    background-color: var(--primary-500);
+    color: white;
+}
+
+/* ============================================
+   Focus Styles
+   ============================================ */
+:focus-visible {
+    outline: 2px solid var(--primary-500);
+    outline-offset: 2px;
+}
+
+/* ============================================
+   Button Variants
+   ============================================ */
+.btn-primary {
+    @apply inline-flex items-center justify-center gap-2 px-4 py-2.5 
+           bg-gradient-to-r from-primary-600 to-primary-500 
+           text-white font-medium rounded-xl
+           shadow-lg shadow-primary-500/25
+           hover:shadow-xl hover:shadow-primary-500/30
+           hover:-translate-y-0.5
+           active:translate-y-0 active:shadow-md
+           transition-all duration-200
+           focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2;
+}
+
+.btn-secondary {
+    @apply inline-flex items-center justify-center gap-2 px-4 py-2.5
+           bg-white dark:bg-dark-surface
+           text-gray-700 dark:text-gray-200
+           font-medium rounded-xl
+           border border-gray-200 dark:border-dark-border
+           hover:bg-gray-50 dark:hover:bg-dark-border
+           hover:-translate-y-0.5
+           active:translate-y-0
+           transition-all duration-200
+           focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2;
+}
+
+.btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 px-3 py-2
+           text-gray-600 dark:text-gray-300
+           font-medium rounded-lg
+           hover:bg-gray-100 dark:hover:bg-dark-border
+           transition-all duration-150
+           focus:outline-none focus:ring-2 focus:ring-primary-500;
+}
+
+/* ============================================
+   Card Styles
+   ============================================ */
+.card {
+    @apply bg-white dark:bg-dark-surface
+           rounded-2xl
+           border border-gray-100 dark:border-dark-border
+           shadow-sm
+           hover:shadow-md
+           transition-all duration-200;
+}
+
+.card-hover {
+    @apply card
+           hover:-translate-y-1
+           hover:border-primary-200 dark:hover:border-primary-800
+           hover:shadow-lg hover:shadow-primary-500/10;
+}
+
+/* ============================================
+   Input Styles
+   ============================================ */
+.input-field {
+    @apply w-full px-4 py-2.5
+           bg-white dark:bg-dark-surface
+           border border-gray-200 dark:border-dark-border
+           rounded-xl
+           text-gray-900 dark:text-gray-100
+           placeholder-gray-400 dark:placeholder-gray-500
+           focus:border-primary-500 focus:ring-2 focus:ring-primary-500/20
+           transition-all duration-200
+           disabled:opacity-50 disabled:cursor-not-allowed;
+}
+
+.input-field::placeholder {
+    @apply text-gray-400 dark:text-gray-500;
+}
+
+/* ============================================
+   Note Card Specific Styles
+   ============================================ */
+.note-card {
+    @apply card-hover p-5 cursor-pointer group;
+}
+
+.note-card-title {
+    @apply text-lg font-semibold text-gray-900 dark:text-gray-100
+           mb-2 line-clamp-1
+           group-hover:text-primary-600 dark:group-hover:text-primary-400
+           transition-colors duration-200;
+}
+
+.note-card-excerpt {
+    @apply text-sm text-gray-500 dark:text-gray-400
+           line-clamp-3 mb-4;
+}
+
+.note-card-meta {
+    @apply flex items-center justify-between text-xs text-gray-400 dark:text-gray-500;
+}
+
+/* ============================================
+   Editor Styles
+   ============================================ */
+.editor-container {
+    @apply bg-white dark:bg-dark-surface
+           rounded-2xl
+           border border-gray-200 dark:border-dark-border
+           overflow-hidden;
+}
+
+.editor-toolbar {
+    @apply flex items-center gap-1 p-3
+           border-b border-gray-200 dark:border-dark-border
+           bg-gray-50/50 dark:bg-dark-surface;
+}
+
+.editor-content {
+    @apply min-h-[400px] p-6
+           prose prose-gray dark:prose-invert
+           max-w-none
+           focus:outline-none;
+}
+
+.editor-content h1 { @apply text-3xl font-bold mb-4; }
+.editor-content h2 { @apply text-2xl font-semibold mb-3; }
+.editor-content h3 { @apply text-xl font-medium mb-2; }
+.editor-content p { @apply mb-4 leading-relaxed; }
+.editor-content ul, .editor-content ol { @apply mb-4 pl-6; }
+.editor-content li { @apply mb-1; }
+.editor-content blockquote {
+    @apply border-l-4 border-primary-500 pl-4 italic my-4;
+}
+.editor-content code {
+    @apply bg-gray-100 dark:bg-dark-border px-2 py-1 rounded text-sm font-mono;
+}
+.editor-content pre {
+    @apply bg-gray-900 text-gray-100 p-4 rounded-xl overflow-x-auto my-4;
+}
+.editor-content pre code {
+    @apply bg-transparent p-0 text-inherit;
+}
+
+/* ============================================
+   Toast Notifications
+   ============================================ */
+.toast {
+    @apply flex items-center gap-3 px-4 py-3
+           bg-white dark:bg-dark-surface
+           border border-gray-200 dark:border-dark-border
+           rounded-xl
+           shadow-lg shadow-gray-200/50 dark:shadow-black/30
+           animate-slide-up;
+}
+
+.toast-success {
+    @apply border-l-4 border-l-green-500;
+}
+
+.toast-error {
+    @apply border-l-4 border-l-red-500;
+}
+
+.toast-warning {
+    @apply border-l-4 border-l-yellow-500;
+}
+
+.toast-info {
+    @apply border-l-4 border-l-primary-500;
+}
+
+/* ============================================
+   Modal Styles
+   ============================================ */
+.modal-overlay {
+    @apply fixed inset-0 z-50
+           bg-black/50 backdrop-blur-sm
+           flex items-center justify-center
+           p-4
+           animate-fade-in;
+}
+
+.modal-content {
+    @apply bg-white dark:bg-dark-surface
+           rounded-2xl
+           shadow-2xl
+           max-w-lg w-full
+           max-h-[90vh] overflow-y-auto
+           animate-slide-up;
+}
+
+.modal-header {
+    @apply flex items-center justify-between p-5
+           border-b border-gray-200 dark:border-dark-border;
+}
+
+.modal-body {
+    @apply p-5;
+}
+
+.modal-footer {
+    @apply flex items-center justify-end gap-3 p-5
+           border-t border-gray-200 dark:border-dark-border
+           bg-gray-50/50 dark:bg-dark-surface;
+}
+
+/* ============================================
+   Loading States
+   ============================================ */
+.skeleton {
+    @apply animate-pulse bg-gray-200 dark:bg-dark-border rounded;
+}
+
+.loading-spinner {
+    @apply w-5 h-5 border-2 border-gray-200 dark:border-dark-border
+           border-t-primary-500 border-r-primary-500
+           rounded-full
+           animate-spin;
+}
+
+/* ============================================
+   Badge Styles
+   ============================================ */
+.badge {
+    @apply inline-flex items-center px-2.5 py-0.5
+           rounded-full text-xs font-medium
+           bg-primary-100 text-primary-700
+           dark:bg-primary-900/30 dark:text-primary-300;
+}
+
+.badge-success {
+    @apply bg-green-100 text-green-700
+           dark:bg-green-900/30 dark:text-green-300;
+}
+
+.badge-warning {
+    @apply bg-yellow-100 text-yellow-700
+           dark:bg-yellow-900/30 dark:text-yellow-300;
+}
+
+.badge-danger {
+    @apply bg-red-100 text-red-700
+           dark:bg-red-900/30 dark:text-red-300;
+}
+
+/* ============================================
+   Empty State
+   ============================================ */
+.empty-state {
+    @apply flex flex-col items-center justify-center
+           py-16 px-4 text-center;
+}
+
+.empty-state-icon {
+    @apply w-16 h-16 mb-4
+           text-gray-300 dark:text-gray-600;
+}
+
+.empty-state-title {
+    @apply text-xl font-semibold text-gray-900 dark:text-gray-100 mb-2;
+}
+
+.empty-state-description {
+    @apply text-gray-500 dark:text-gray-400 max-w-sm;
+}
+
+/* ============================================
+   Utility Classes
+   ============================================ */
+.glass-effect {
+    @apply bg-white/80 dark:bg-dark-surface/80 backdrop-blur-lg;
+}
+
+.gradient-text {
+    @apply bg-gradient-to-r from-primary-600 to-primary-400
+           bg-clip-text text-transparent;
+}
+
+.line-clamp-1 {
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.line-clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+/* ============================================
+   Print Styles
+   ============================================ */
+@media print {
+    header, footer, .no-print {
+        display: none !important;
+    }
+    
+    body {
+        background: white !important;
+        color: black !important;
+    }
+    
+    .card {
+        box-shadow: none !important;
+        border: 1px solid #ddd !important;
+    }
+}
+
+/* ============================================
+   Reduced Motion
+   ============================================ */
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
